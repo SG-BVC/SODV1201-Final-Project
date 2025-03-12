@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Basic HTML with jQuery</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="global.js"></script>
+    <script src="js/global.js"></script>
+    <script src="server.js"></script>
 </head>
 <body>
     <header>
@@ -18,11 +19,18 @@
                 <li><a href="#">About</a></li>
                 <li><a href="#">Contact</a></li>
             </ul>
+            <div class="dropdown">
+                <button class="drop_button">Sign Up / Log In</button>
+                <div class="dropdown_content">
+                    <a href="#">Log In</a>
+                    <a href="html/signup.html">Sign Up</a>
+                </div>
+            </div>
         </nav>
-    </header>
+    </header>    
     <main>
         <section class="search">
-            <input type="text" id="searchBar" placeholder="Search for a workspace...">
+            <input type="text" id="search_bar" placeholder="Search for a workspace...">
             <button onclick="searchSpaces()">Search</button>
         </section>
         <section id="results">

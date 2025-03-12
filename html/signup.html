@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/signup.css">
+</head>
+<body>
+    <header>
+        <h1>Sign Up</h1>
+        <nav>
+            <a href="../index.html">← Back to Home</a>
+        </nav>
+    </header>
+    <main>
+        <section class="signup_form_cls">
+            <h2>Create an Account</h2>
+            <form id="signup_form">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" required>
+
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="role">I am a:</label>
+                <select id="role" name="role">
+                    <option value="coworker">Coworker</option>
+                    <option value="owner">Space Owner</option>
+                </select>
+
+                <button type="submit">Sign Up</button>
+            </form>
+
+            <p id="message"></p>
+        </section>
+    </main>
+    <script src="../js/signup.js"></script>
+</body>
+</html>
