@@ -1,1 +1,0 @@
-// For all html pages

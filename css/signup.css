@@ -1,0 +1,48 @@
+.signup_form_cls {
+    width: 40%;
+    margin: auto;
+    background-color: #252525;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.signup_form_cls h2 {
+    color: #ff3b3b;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-top: 10px;
+    color: white;
+    text-align: left;
+}
+
+input, select {
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    border: 2px solid #ff3b3b;
+    background-color: #333;
+    color: white;
+}
+
+button {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #ff3b3b;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+}
+
+button:hover {
+    background-color: #e22b2b;
+}
