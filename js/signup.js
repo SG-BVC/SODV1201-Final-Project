@@ -1,5 +1,4 @@
-const { PORT } = require("./global");
-
+PORT = 3000
 document.addEventListener("DOMContentLoaded", () => {
     const signup_form = document.getElementById("signup_form");
     const message = document.getElementById("message");
@@ -23,6 +22,9 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(response => response.json())
         .then(data => {
             message.innerText = data.message;
+            setTimeout(function() {
+                window.location.href = "../index.html"
+              }, 2000);
         })
         .catch(error => console.error("Error:", error));
     });
