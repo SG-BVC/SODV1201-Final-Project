@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/editlisting.css">
+    <script src="../js/global.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Edit Your Listings</h1>
+        <nav>
+            <a href="../index.html">← Back to Home</a>
+        </nav>
+    </header>
+    <main>
+        <div>
+            <section class="listing_form_cls">
+                <h2>Add a New Listing</h2>
+                <form id="listing_form">
+                    <label for="property_name">Property Name</label>
+                    <input type="text" id="property_name" name="property_name" required>
+
+                    <label for="location">Location</label>
+                    <input type="text" id="location" name="location" required>
+
+                    <label for="neighborhood">Neighborhood</label>
+                    <input type="text" id="neighborhood" name="neighborhood" required>
+
+                    <label for="square_feet">Square Feet</label>
+                    <input type="number" id="square_feet" name="square_feet" required>
+
+                    <label for="has_parking">Has Parking Garage?</label>
+                    <select id="has_parking" name="has_parking">
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+
+                    <label for="public_transport">Can be Reached by Public Transportation?</label>
+                    <select id="public_transport" name="public_transport">
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+
+                    <button type="submit">Add Listing</button>
+                </form>
+                <p id="message"></p>
+            </section>
+            <section class="edit_listing_form_cls">
+                <h2>Edit an Existing Listing</h2>
+                <label for="edit_listing_dropdown">Select a Listing:</label>
+                <select id="edit_listing_dropdown">
+                    <option value="">-- Select a Listing --</option>
+                </select>
+                <form id="edit_listing_form">
+                    <label for="property_name">Property Name</label>
+                    <input type="text" id="property_name" name="property_name" required>
+
+                    <label for="location">Location</label>
+                    <input type="text" id="location" name="location" required>
+
+                    <label for="neighborhood">Neighborhood</label>
+                    <input type="text" id="neighborhood" name="neighborhood" required>
+
+                    <label for="square_feet">Square Feet</label>
+                    <input type="number" id="square_feet" name="square_feet" required>
+
+                    <label for="has_parking">Has Parking Garage</label>
+                    <select id="has_parking" name="has_parking">
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+
+                    <label for="public_transport">Can be Reached by Public Transport</label>
+                    <select id="public_transport" name="public_transport">
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+
+                    <button type="submit">Update Listing</button>
+                </form>
+                <p id="message"></p>
+            </section>
+        </div>
+    </main>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const user = JSON.parse(localStorage.getItem("logged_in_user"));
+            // This shouldn't happen with the site structure, but it's here just in case
+            if (!user || user.role !== "owner") {
+                alert("You must be logged in as a Space Owner to access this page.");
+                window.location.href = "../index.html";
+            }
+        });
+    </script>
+    <script src="../js/addlisting.js"></script>
+    <script src="../js/editlisting.js"></script>
+</body>
+</html>
