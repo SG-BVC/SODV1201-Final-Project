@@ -6,8 +6,6 @@
     <title>Basic HTML with jQuery</title>
     <link rel="stylesheet" href="css/styles.css">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="js/global.js"></script>
-    <script src="server.js"></script>
 </head>
 <body>
     <header>
@@ -22,12 +20,14 @@
             <div class="dropdown">
                 <button class="drop_button">Sign Up / Log In</button>
                 <div class="dropdown_content">
-                    <a href="#">Log In</a>
+                    <a href="html/login.html">Log In</a>
                     <a href="html/signup.html">Sign Up</a>
+                    <a href="html/editlisting.html" style="display:none;">Edit Your Listings</a>
+                    <a href="#" id="logout_link" style="display:none;">Log Out</a>
                 </div>
-            </div>
+            </div>            
         </nav>
-    </header>    
+    </header>
     <main>
         <section class="search">
             <input type="text" id="search_bar" placeholder="Search for a workspace...">
@@ -37,6 +37,7 @@
             <!-- Search results will appear here -->
         </section>
     </main>
-    <script src="script.js"></script>
+    <script src="js/global.js"></script>
+    <script src="server.js"></script>
 </body>
 </html>
