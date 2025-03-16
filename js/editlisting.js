@@ -1,4 +1,4 @@
-PORT = 3000;
+const { PORT } = require('./global');
 document.addEventListener("DOMContentLoaded", async () => {
     const list_dropdown = document.getElementById("edit_listing_dropdown");
     const edit_form = document.getElementById("edit_listing_form");

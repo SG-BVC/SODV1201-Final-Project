@@ -3,7 +3,7 @@ const fs = require("fs");
 const body_parser = require("body-parser");
 const cors = require("cors");
 const path = require('path');
-PORT = 3000
+const { PORT } = require('./js/global');
 
 const app = express();
 app.use(cors());

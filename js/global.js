@@ -1,3 +1,7 @@
+module.exports = {
+    PORT: 3000
+};
+
 document.addEventListener("DOMContentLoaded", () => {
     const drop_button = document.querySelector(".drop_button");
     const dropdown_content = document.querySelector(".dropdown_content");
