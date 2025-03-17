@@ -1,4 +1,4 @@
-const { PORT } = require('./global');
+PORT = 3000;
 document.addEventListener("DOMContentLoaded", async () => {
     const list_dropdown = document.getElementById("edit_listing_dropdown");
     const edit_form = document.getElementById("edit_listing_form");
@@ -62,18 +62,18 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
         
         owner_listings[selected_index] = {
-            listed: edit_form.listed.value,
+            listed: edit_form.querySelector("#listed_status").value,
             property_name: edit_form.property_name.value,
             location: edit_form.location.value,
             neighborhood: edit_form.neighborhood.value,
             number_ppl: edit_form.number_ppl.value,
-            workplace_type: edit_form.workplace_type,
+            workplace_type: edit_form.workplace_type.value,
             square_feet: edit_form.square_feet.value,
             has_parking: edit_form.has_parking.value,
             public_transport: edit_form.public_transport.value,
-            availability_date: edit_form.availability_date,
-            lease_term: edit_form.lease_term,
-            price: edit_form.price,
+            availability_date: edit_form.availability_date.value,
+            lease_term: edit_form.lease_term.value,
+            price: edit_form.price.value,
             owner_email: user.email
         };
         

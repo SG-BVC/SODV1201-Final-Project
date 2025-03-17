@@ -1,4 +1,4 @@
-const { PORT } = require('./global');
+PORT = 3000;
 document.addEventListener("DOMContentLoaded", () => {
     const login_form = document.getElementById("login_form");
     const message = document.getElementById("message");

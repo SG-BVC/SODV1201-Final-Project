@@ -1,4 +1,4 @@
-const { PORT } = require('./global');
+PORT = 3000;
 document.addEventListener("DOMContentLoaded", () => {
     const listing_form = document.getElementById("listing_form");
     const message = document.getElementById("message");
@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
             location: document.getElementById("location").value,
             neighborhood: document.getElementById("neighborhood").value,
             number_ppl: document.getElementById("number_ppl").value,
-            workplace_type: document.getElementById("workplace_type"),
+            workplace_type: document.getElementById("workplace_type").value,
             square_feet: document.getElementById("square_feet").value,
             has_parking: document.getElementById("has_parking").value,
             public_transport: document.getElementById("public_transport").value,
