@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Listings</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/showlistings.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body class = "showlistings-page">
+    <header>
+        <h1>Available Coworking Spaces</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="./showlistings.html">Spaces</a></li>
+                <!-- <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li> -->
+            </ul>
+            <div class="dropdown">
+                <button class="drop_button">Sign Up / Log In</button>
+                <div class="dropdown_content">
+                    <a href="./login.html">Log In</a>
+                    <a href="./signup.html">Sign Up</a>
+                    <a href="./editlisting.html" style="display:none;">Edit Your Listings</a>
+                    <a href="#" id="logout_link" style="display:none;">Log Out</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <main>
+        <section class="search-section">
+            <h2>Search Listings</h2>
+            
+            <!-- Search Box -->
+            <div id=search>
+                <label for="search_type">Search By:</label>
+                <select id="search_type">
+                    <option value="property_name">Name</option>
+                    <option value="location">Location</option>
+                    <option value="neighborhood">Neighborhood</option>
+                </select>
+                <input type="text" id="search_input" placeholder="Search...">
+                <button id="search_button">Search</button>
+            </div>
+            <div id="drop_filter">
+                <div id="dropdowns">
+                    <label for="workplace_type">Workplace Type:</label>
+                    <select id="workplace_type">
+                        <option value="">Any</option>
+                        <option value="meeting_room">Meeting Room</option>
+                        <option value="private_office">Private Office</option>
+                        <option value="open_desk">Open Desk</option>
+                    </select>
+            
+                    <label for="lease_term">Lease Term:</label>
+                    <select id="lease_term">
+                        <option value="">Any</option>
+                        <option value="day">Day</option>
+                        <option value="week">Week</option>
+                        <option value="month">Month</option>
+                    </select>
+                </div>
+            
+                <div id="checkboxes">
+                    <label for="has_parking">Has Parking:</label>
+                    <input type="checkbox" id="has_parking" name="has_parking">
+            
+                    <label for="public_transport">Public Transport:</label>
+                    <input type="checkbox" id="public_transport" name="public_transport">
+                </div>
+            
+                <div id="sliders">
+                    <div>
+                        <label for="price_range">Price Range:</label>
+                        <input type="range" id="price_range" min="0" max="10000" step="10">
+                        <span id="price_range_value">$10000</span>
+                    </div>
+                    <div>
+                        <label for="capacity_range">Capacity Range:</label>
+                        <input type="range" id="capacity_range" min="0" max="100" step="1">
+                        <span id="capacity_range_value">0</span>
+                    </div>
+                </div>
+                <button id="apply_filters">Apply Filters</button>
+            </div>
+        
+        </section>
+        
+        <section id="listings_container" class="listings_grid">
+            <!-- Listings will be dynamically inserted here -->
+        </section>
+    </main>
+    <script>
+        // Set the initial values for the sliders
+        document.getElementById("price_range").value = 10000; // Set price slider to max value
+        document.getElementById("capacity_range").value = 0; // Set capacity slider to min value
+
+        // Update the displayed values as the sliders are moved
+        document.getElementById("price_range").addEventListener("input", function() {
+            document.getElementById("price_range_value").textContent = this.value;
+        });
+
+        document.getElementById("capacity_range").addEventListener("input", function() {
+            document.getElementById("capacity_range_value").textContent = this.value;
+        });
+    </script>
+    <script src="../js/global.js"></script>
+    <script src="../js/showlistings.js"></script>
+</body>
+</html>

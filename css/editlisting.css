@@ -60,6 +60,10 @@ form select {
     width: 50px;
 }
 
+#workplace_type {
+    width: 150px;
+}
+
 /* Error message */
 #message {
     color: #ff3b3b;

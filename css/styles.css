@@ -45,7 +45,7 @@ nav ul li a:hover {
     margin: 30px auto;
 }
 
-#search_bar {
+#search_input {
     width: 50%;
     padding: 10px;
     border: 2px solid #ff3b3b;

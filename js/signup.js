@@ -1,4 +1,4 @@
-PORT = 3000
+PORT = 3000;
 document.addEventListener("DOMContentLoaded", () => {
     const signup_form = document.getElementById("signup_form");
     const message = document.getElementById("message");

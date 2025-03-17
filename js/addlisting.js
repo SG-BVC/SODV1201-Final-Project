@@ -7,12 +7,18 @@ document.addEventListener("DOMContentLoaded", () => {
         event.preventDefault();
 
         const form_data = {
+            listed: document.getElementById("listed_status").value,
             property_name: document.getElementById("property_name").value,
             location: document.getElementById("location").value,
             neighborhood: document.getElementById("neighborhood").value,
+            number_ppl: document.getElementById("number_ppl").value,
+            workplace_type: document.getElementById("workplace_type").value,
             square_feet: document.getElementById("square_feet").value,
             has_parking: document.getElementById("has_parking").value,
             public_transport: document.getElementById("public_transport").value,
+            availability_date: document.getElementById("availability_date").value,
+            lease_term: document.getElementById("lease_term").value,
+            price: document.getElementById("price").value,
             owner_email: JSON.parse(localStorage.getItem("logged_in_user")).email
         };
 
