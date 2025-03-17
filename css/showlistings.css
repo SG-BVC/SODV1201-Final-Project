@@ -1,9 +1,9 @@
-.showlistings-page {
+.showlistings_page {
     margin: 0;
     padding: 0;
 }
 
-.showlistings-page main {
+.showlistings_page main {
     padding: 20px;
 }
 
@@ -12,7 +12,9 @@
     width: 90%;
 }
 
-.listing {
+.listing_box
+{
+    width: 600px;
     background-color: #363636;
     padding: 15px;
     margin: 15px 0;
@@ -20,11 +22,6 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-left: 5px solid #d9534f;
     transition: 0.3s ease-in-out;
-}
-
-.listing_box
-{
-    width: 600px;
 }
 
 .listing h3 {

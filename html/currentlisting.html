@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Listings</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/currentlisting.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body class = "currentlisting_page">
+    <header>
+        <h1>Listing Details</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="./showlistings.html">Spaces</a></li>
+                <!-- <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li> -->
+            </ul>
+            <div class="dropdown">
+                <button class="drop_button">Sign Up / Log In</button>
+                <div class="dropdown_content">
+                    <a href="./login.html">Log In</a>
+                    <a href="./signup.html">Sign Up</a>
+                    <a href="./editlisting.html" style="display:none;">Edit Your Listings</a>
+                    <a href="#" id="logout_link" style="display:none;">Log Out</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section id="listing_details">
+            <!-- Listing will be inserted here -->
+        </section>
+    </main>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const listing = JSON.parse(localStorage.getItem("selected_listing"));
+
+            let text_convert = "";
+            if (listing.workplace_type === "meeting_room") {
+                text_convert = "Meeting Room";
+            } else if (listing.workplace_type === "private_office") {
+                text_convert = "Private Office";
+            } else if (listing.workplace_type === "open_desk") {
+                text_convert = "Open Desk";
+            }
+
+            if (listing) {
+                document.getElementById("listing_details").innerHTML = `
+                    <h2>${listing.property_name}</h2>
+                    <p><strong>Location:</strong> ${listing.location}</p>
+                    <p><strong>Neighborhood:</strong> ${listing.neighborhood}</p>
+                    <p><strong>Workplace Type:</strong> ${text_convert}</p>
+                    <p><strong>Has Parking:</strong> ${listing.has_parking === "yes" ? "Yes" : "No"}</p>
+                    <p><strong>Public Transport:</strong> ${listing.public_transport === "yes" ? "Yes" : "No"}</p>
+                    <p><strong>Price:</strong> $${listing.price}/${listing.lease_term}</p>
+                    <p><strong>Capacity:</strong> ${listing.number_ppl} People</p>
+                `;
+            } else {
+                document.getElementById("listing_details").innerHTML = "<p>No listing selected.</p>";
+            }
+        });
+    </script>
+    <script src="../js/global.js"></script>
+</body>
+</html>

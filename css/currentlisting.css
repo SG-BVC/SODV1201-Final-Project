@@ -1,0 +1,90 @@
+body.currentlisting_page {
+    background-color: #1e1e1e;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+.dropdown {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+}
+
+.drop_button {
+    background-color: #d9534f;
+    border: none;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.dropdown_content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    min-width: 160px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+}
+
+.dropdown:hover .dropdown_content {
+    display: block;
+}
+
+.dropdown_content a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+}
+
+.dropdown_content a:hover {
+    background-color: #ddd;
+}
+
+main {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #2b2b2b;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#listing_details h2 {
+    color: #d9534f;
+    text-align: center;
+}
+
+#listing_details p {
+    background-color: #3a3a3a;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+}
