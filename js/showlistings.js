@@ -1,3 +1,4 @@
+PORT = 3000;
 document.addEventListener("DOMContentLoaded", function () {
     const listings_container = document.getElementById("listings_container");
     const search_input = document.getElementById("search_input");
@@ -10,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     async function fetchListings() {
         try {
-            const response = await fetch("../json/listings.json");
+            const response = await fetch(`http://localhost:${PORT}/json/listings.json`);
             const listings = await response.json();
             displayListings(listings);
         } catch (error) {
@@ -19,10 +20,14 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    function saveListing(listing) {
+        localStorage.setItem("selected_listing", JSON.stringify(listing));
+        window.location.href = "./currentlisting.html"; // Redirect after saving
+    }
+    
     function displayListings(filtered_listings) {
         const listings_grid = document.getElementById("listings_container");
     
-        // Clear existing listings before displaying new ones
         listings_grid.innerHTML = "";
     
         if (filtered_listings.length === 0) {
@@ -32,49 +37,39 @@ document.addEventListener("DOMContentLoaded", function () {
     
         filtered_listings.forEach(listing => {
             if (listing.listed === "yes") {
-                const listring_element = document.createElement("div");
-                listring_element.classList.add("listing_box");
-                listring_element.id = `listing-${listing.id}`;
-
-                text_convert = ""
-                if (listing.workplace_type = "meeting_room") {
+                const listing_element = document.createElement("div");
+                listing_element.classList.add("listing_box");
+                listing_element.id = `listing-${listing.id}`;
+    
+                let text_convert = "";
+                if (listing.workplace_type === "meeting_room") {
                     text_convert = "Meeting Room";
-                } else if (listing.workplace_type = "private_office") {
+                } else if (listing.workplace_type === "private_office") {
                     text_convert = "Private Office";
-                } else if (listing.workplace_type = "open_desk") {
+                } else if (listing.workplace_type === "open_desk") {
                     text_convert = "Open Desk";
                 }
-        
+    
                 // Create details
-                listring_element.innerHTML = `
-                    <h3>${listing.property_name}</h3>
+                listing_element.innerHTML = `
+                    <h3><a href="#" class="listing-link">${listing.property_name}</a></h3>
                     <p><strong>Location:</strong> ${listing.location}</p>
                     <p><strong>Neighborhood:</strong> ${listing.neighborhood}</p>
                     <p><strong>Workplace Type:</strong> ${text_convert}</p>
-                    <p><strong>Lease Term:</strong> ${listing.lease_term}</p>
                     <p><strong>Has Parking:</strong> ${listing.has_parking === "yes" ? "Yes" : "No"}</p>
                     <p><strong>Public Transport:</strong> ${listing.public_transport === "yes" ? "Yes" : "No"}</p>
                     <p><strong>Price:</strong> $${listing.price}/${listing.lease_term}</p>
                     <p><strong>Capacity:</strong> ${listing.number_ppl} People</p>
                 `;
-        
-                // Apply box styling dynamically to prevent loss of styles
-                listring_element.style.backgroundColor = "#363636";
-                listring_element.style.padding = "15px";
-                listring_element.style.margin = "15px 0";
-                listring_element.style.borderRadius = "10px";
-                listring_element.style.boxShadow = "0 4px 8px rgba(0, 0, 0, 0.1)";
-                listring_element.style.borderLeft = "5px solid #d9534f";
-                listring_element.style.transition = "0.3s ease-in-out";
-                listring_element.style.color = "#fff";
-                listring_element.addEventListener("mouseenter", () => {
-                    listring_element.style.backgroundColor = "#23314d";
+    
+                // Find the link inside the created element and add event listener
+                const link = listing_element.querySelector(".listing-link");
+                link.addEventListener("click", (event) => {
+                    event.preventDefault(); // Prevent default link behavior (This took me so long to figure out lol)
+                    saveListing(listing);
                 });
-                listring_element.addEventListener("mouseleave", () => {
-                    listring_element.style.backgroundColor = "#363636";
-                });
-        
-                listings_grid.appendChild(listring_element);
+    
+                listings_grid.appendChild(listing_element);
             }
         });
     }
