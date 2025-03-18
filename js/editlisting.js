@@ -48,6 +48,9 @@ document.addEventListener("DOMContentLoaded", async () => {
             edit_form.availability_date = selected_listing.availability_date;
             edit_form.lease_term = selected_listing.lease_term;
             edit_form.price = selected_listing.price;
+            if (selected_listing.image) {
+                document.getElementById("current_image").src = `../img/${selected_listing.image}`;
+            }
         }
     });
     

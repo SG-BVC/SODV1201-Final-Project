@@ -14,10 +14,13 @@ main {
     border-radius: 10px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+    display: grid;
+    grid-template-columns: 3fr 1fr; /* Two columns: listing_details (3x) and owner_details (1x) */
     gap: 20px;
+}
+
+section {
+    background-color: #3a3a3a;
 }
 
 #listing_details, #owner_details {
@@ -27,13 +30,17 @@ main {
 }
 
 #listing_details {
-    flex: 3;
-    min-width: 70%;
+    grid-column: 1; /* First column */
 }
 
 #owner_details {
-    flex: 1;
-    min-width: 20%;
+    grid-column: 2; /* Second column */
+}
+
+#image_details {
+    grid-column: span 2;
+    text-align: center;
+    margin-top: 20px;
 }
 
 #listing_details h2 {
@@ -42,7 +49,7 @@ main {
 }
 
 #listing_details p {
-    background-color: #3a3a3a;
+    background-color: #414141;
     padding: 10px;
     border-radius: 5px;
     margin: 10px 0;
