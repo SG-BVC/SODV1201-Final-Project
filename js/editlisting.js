@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const edit_form = document.getElementById("edit_listing_form");
     const message = document.getElementById("message2");
     const user = JSON.parse(localStorage.getItem("logged_in_user"));
+    const delete_button = document.getElementById("delete");
     
     if (!user || user.role !== "owner") {
         message.innerText = "Access denied. You must be an owner to edit listings.";
@@ -11,10 +12,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
     
     async function fetchListings() {
-        const response = await fetch("../json/listings.json");
+        const response = await fetch(`http://localhost:${PORT}/get_listings`);
         const listings = await response.json();
         return listings.filter(listing => listing.owner_email === user.email);
-    }
+    }    
     
     function populateDropdown(listings) {
         list_dropdown.innerHTML = '<option value="">-- Select a Listing --</option>';
@@ -44,6 +45,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             edit_form.workplace_type = selected_listing.workplace_type;
             edit_form.square_feet.value = selected_listing.square_feet;
             edit_form.has_parking.value = selected_listing.has_parking;
+            edit_form.has_smoking.value = selected_listing.has_smoking;
             edit_form.public_transport.value = selected_listing.public_transport;
             edit_form.availability_date = selected_listing.availability_date;
             edit_form.lease_term = selected_listing.lease_term;
@@ -73,6 +75,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             workplace_type: edit_form.workplace_type.value,
             square_feet: edit_form.square_feet.value,
             has_parking: edit_form.has_parking.value,
+            has_smoking: edit_form.has_smoking.value,
             public_transport: edit_form.public_transport.value,
             availability_date: edit_form.availability_date.value,
             lease_term: edit_form.lease_term.value,
@@ -80,14 +83,44 @@ document.addEventListener("DOMContentLoaded", async () => {
             owner_email: user.email
         };
         
-        await fetch(`http://localhost:${PORT}/updateListings`, {
+        await fetch(`http://localhost:${PORT}/update_listings`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(owner_listings)
+            body: JSON.stringify(owner_listings[selected_index])
         });
         
         message.innerText = "Listing updated successfully!";
         loadListings();
+    });
+
+    delete_button.addEventListener("click", async () => {
+        const owner_listings = await fetchListings();
+        const selected_index = list_dropdown.value;
+    
+        if (selected_index === "") {
+            message.innerText = "Please select a listing to delete.";
+            return;
+        }
+    
+        const listing_delete = owner_listings[selected_index];
+        const confirm_delete = confirm(`Are you sure you want to delete "${listing_delete.property_name}"?`);
+        if (!confirm_delete) return;
+    
+        await fetch(`http://localhost:${PORT}/delete_listing`, {
+            method: "DELETE",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                title: listing_delete.property_name,
+                email: listing_delete.owner_email
+            })
+        });
+    
+        message.innerText = data.message;
+        
+        // Refresh the page after deletion
+        if (res.ok) {
+            location.reload();
+        }
     });
     
     loadListings();
