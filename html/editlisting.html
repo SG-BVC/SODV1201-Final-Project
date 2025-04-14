@@ -55,6 +55,12 @@
                         <option value="no">No</option>
                     </select>
 
+                    <label for="has_smoking">Has Smoking Areas?</label>
+                    <select id="has_smoking" name="has_smoking">
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+
                     <label for="public_transport">Can be Reached by Public Transportation?</label>
                     <select id="public_transport" name="public_transport">
                         <option value="yes">Yes</option>
@@ -123,6 +129,12 @@
                         <option value="no">No</option>
                     </select>
 
+                    <label for="has_smoking">Has Smoking Areas?</label>
+                    <select id="has_smoking" name="has_smoking">
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+
                     <label for="public_transport">Can be Reached by Public Transportation?</label>
                     <select id="public_transport" name="public_transport">
                         <option value="yes">Yes</option>
@@ -145,7 +157,8 @@
                     <label for="listing_image">Upload Image</label>
                     <input type="file" id="listing_image" name="listing_image" accept="image/png, image/jpeg" required>
 
-                    <button type="submit">Edit Listing</button>
+                    <button type="submit" id="submit">Edit Listing</button>
+                    <button type="button" id="delete">Delete Listing</button>
                 </form>
                 <p id="message2"></p>
             </section>

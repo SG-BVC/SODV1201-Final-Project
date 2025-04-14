@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     async function fetchListings() {
         try {
-            const response = await fetch(`http://localhost:${PORT}/json/listings.json`);
+            const response = await fetch(`http://localhost:${PORT}/get_listings`);
             const listings = await response.json();
             displayListings(listings);
         } catch (error) {
@@ -57,6 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     <p><strong>Neighborhood:</strong> ${listing.neighborhood}</p>
                     <p><strong>Workplace Type:</strong> ${text_convert}</p>
                     <p><strong>Has Parking:</strong> ${listing.has_parking === "yes" ? "Yes" : "No"}</p>
+                    <p><strong>Has Smoking:</strong> ${listing.has_smoking === "yes" ? "Yes" : "No"}</p>
                     <p><strong>Public Transport:</strong> ${listing.public_transport === "yes" ? "Yes" : "No"}</p>
                     <p><strong>Price:</strong> $${listing.price}/${listing.lease_term}</p>
                     <p><strong>Capacity:</strong> ${listing.number_ppl} People</p>
@@ -78,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function searchListings() {
         const search_term = search_input.value.toLowerCase();
 
-        fetch("../json/listings.json")
+        fetch(`http://localhost:${PORT}/get_listings`)
             .then(response => response.json())
             .then(listings => {
                 const filtered_listings = listings.filter(listing =>
@@ -96,11 +97,12 @@ document.addEventListener("DOMContentLoaded", function () {
         const workplace_type = document.getElementById("workplace_type").value;
         const lease_term = document.getElementById("lease_term").value;
         const has_parking = document.getElementById("has_parking").checked;
+        const has_smoking = document.getElementById("has_smoking").checked;
         const public_transport = document.getElementById("public_transport").checked;
         const price_range = document.getElementById("price_range").value;
         const capacity_range = document.getElementById("capacity_range").value;
     
-        fetch("../json/listings.json")
+        fetch(`http://localhost:${PORT}/get_listings`)
             .then(response => response.json())
             .then(listings => {
                 const filtered_listings = listings.filter(listing => {
@@ -119,13 +121,14 @@ document.addEventListener("DOMContentLoaded", function () {
                     const matches_workplace_type = workplace_type ? listing.workplace_type === workplace_type : true;
                     const matches_lease_term = lease_term ? listing.lease_term === lease_term : true;
                     const matches_has_parking = has_parking !== false ? listing.has_parking === "yes" : true;
+                    const matches_has_smoking = has_smoking !== false ? listing.has_smoking === "yes" : true;
                     const matches_public_transport = public_transport !== false ? listing.public_transport === "yes" : true;
                     const matches_Price = price_range ? listing.price <= price_range : true;
                     const matches_Capacity = capacity_range ? listing.number_ppl <= capacity_range : true;
         
                     // Return true only if the listing matches all the selected filters
                     return (matches_Search || search_term === "") && matches_workplace_type && matches_lease_term &&
-                        matches_has_parking && matches_public_transport && matches_Price && matches_Capacity;
+                        matches_has_parking && matches_has_smoking && matches_public_transport && matches_Price && matches_Capacity;
                 });
     
                 displayListings(filtered_listings);

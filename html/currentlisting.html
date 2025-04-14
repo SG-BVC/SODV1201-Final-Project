@@ -41,18 +41,18 @@
         </section>
     </main>
     <script>
+        // Had a little help from AI with this one since my local database wasn't working at the time, but we figured it out!
         PORT = 3000;
-        // Fetching data from your backend or API (replace with your actual endpoint)
-        fetch(`http://localhost:${PORT}/get-listing`)  // Replace with your actual API or server endpoint
+        fetch(`http://localhost:${PORT}/get_listing`)
             .then(response => {
-                console.log("Response:", response); // Log the response object
-                return response.text();  // Read the response as text
+                console.log("Response:", response);
+                return response.text();
             })
             .then(text => {
-                console.log("Response Text:", text); // Log the response text to see what's being returned
+                console.log("Response Text:", text);
                 try {
-                    const data = JSON.parse(text);  // Manually parse the JSON
-                    const select_listing = data;  // Populate select_listing with actual data
+                    const data = JSON.parse(text);
+                    const select_listing = data;
 
                     const image_element = document.getElementById("listing_image");
 

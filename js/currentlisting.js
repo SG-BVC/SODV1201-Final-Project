@@ -18,13 +18,14 @@ document.addEventListener("DOMContentLoaded", function () {
             <p><strong>Neighborhood:</strong> ${listing.neighborhood}</p>
             <p><strong>Workplace Type:</strong> ${text_convert}</p>
             <p><strong>Has Parking:</strong> ${listing.has_parking === "yes" ? "Yes" : "No"}</p>
+            <p><strong>Has Smoking:</strong> ${listing.has_smoking === "yes" ? "Yes" : "No"}</p>
             <p><strong>Public Transport:</strong> ${listing.public_transport === "yes" ? "Yes" : "No"}</p>
             <p><strong>Price:</strong> $${listing.price}/${listing.lease_term}</p>
             <p><strong>Capacity:</strong> ${listing.number_ppl} People</p>
         `;
 
         // Fetch users.json and find the owner
-        fetch(`http://localhost:${PORT}/json/users.json`)
+        fetch(`http://localhost:${PORT}/get_users`)
             .then(response => response.json())
             .then(users => {
                 const owner = users.find(user => user.email === listing.owner_email);
